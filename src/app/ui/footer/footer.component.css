@@ -1,0 +1,37 @@
+.Footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    position: absolute;
+}
+.secondline{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#Redes{
+    padding: 10px;
+}
+#Copy{
+    padding: 10px;
+    align-items: center;
+}
+
+#second-line {
+    align-items: center;
+}
+
+footer{
+
+    position: absolute;;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

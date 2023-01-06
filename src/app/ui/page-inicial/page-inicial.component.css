@@ -1,0 +1,118 @@
+#grid1{
+    background-image: url(https://www.apexcapitalcorp.com/wp-content/uploads/2018/05/7-steps_truck1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+}
+#grid2{
+    background-image: url(https://i.pinimg.com/564x/28/2f/47/282f47ee4d2408e520ceef60876d9a6a.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+}
+#grid3{
+    background-image: url(https://i.pinimg.com/564x/69/69/1d/69691d1a2cdb4df50432d24a9f5f9949.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+}
+#grid4{
+    background-image: url(https://i.pinimg.com/564x/5c/64/19/5c6419b73ab12d3ebf9ced8efd092b8e.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+}
+.grids{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+#infotext{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info{
+    width: 100%;
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: 40% 60%;
+    justify-content: space-between;
+}
+
+.info p{
+    margin-top: 20px;
+    text-align: justify;
+    margin-right: 40px;  
+}
+
+
+#Main h2{
+    text-align: center;
+}
+
+.slider{
+   width: 100%;
+   margin: auto;
+   overflow: hidden;
+   background-size: cover;
+   background-position: center;
+   border-radius: 20px;
+   margin-bottom: 200px;
+
+}
+
+.slider ul{
+    display: flex;
+    padding: 0;
+    width: 400%; 
+    animation: cambio 15s infinite;
+    animation-direction: alternate;
+}
+
+.slider li{
+    display: flex;
+    width: 400%;
+    list-style: none;
+    justify-content: space-around;
+}
+
+.slider img{
+    width: 500px;
+    height: 500px;
+}   
+
+.Titulos{
+    padding-bottom: 20px;
+    padding-top: 20px ;
+}
+
+@keyframes cambio{
+    0% {margin-left: 0;}
+    20% {margin-left: 0;}
+
+    25%{margin-left: -100%;}
+    45%{margin-left: -100%;}
+
+    50%{margin-left: -200%;}
+    70%{margin-left: -200%;}
+
+    75%{margin-left: -200%;}
+    100%{margin-left: -200%;}
+}
+
+#infotext{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show{
+    display: block;
+}
+
+body{
+    position: relative;
+    min-height: 100vh;
+}
