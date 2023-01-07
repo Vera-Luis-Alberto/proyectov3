@@ -8,7 +8,9 @@ import { MatDialog } from '@angular/material/dialog';
 
 
 export class RegisterComponent {
+  
   constructor(public dialog: MatDialog) {}
+
   openDialog(): void{
     const dialogRef = this.dialog.open(RegisterComponent, {});
     dialogRef.afterClosed().subscribe(result => console.log(result));

@@ -8,6 +8,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -24,7 +26,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCheckboxModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule,
+    MatCardModule
   ]
 })
 export class MaterialModule { }

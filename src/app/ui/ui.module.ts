@@ -9,7 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { SecretariaComponent } from './secretaria/secretaria.component';
 import { ChoferComponent } from './chofer/chofer.component';
 import { AdministradorComponent } from './administrador/administrador.component';
-
+import { NuevoChoferComponent } from './nuevo-chofer/nuevo-chofer.component';
+import { ModificarChoferComponent } from './modificar-chofer/modificar-chofer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { AdministradorComponent } from './administrador/administrador.component'
     RegisterComponent,
     SecretariaComponent,
     ChoferComponent,
-    AdministradorComponent
+    AdministradorComponent,
+    NuevoChoferComponent,
+    ModificarChoferComponent
   ],
   imports: [
     CommonModule,

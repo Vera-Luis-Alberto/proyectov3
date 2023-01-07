@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UiModule } from './ui/ui.module';
 import { RegisterComponent } from './ui/register/register.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
