@@ -12,6 +12,16 @@ import { AdministradorComponent } from './administrador/administrador.component'
 import { NuevoChoferComponent } from './nuevo-chofer/nuevo-chofer.component';
 import { ModificarChoferComponent } from './modificar-chofer/modificar-chofer.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input'
+import {MatCardModule} from '@angular/material/card'
+import {MatToolbarModule} from '@angular/material/toolbar'
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -27,7 +37,10 @@ import { ModificarChoferComponent } from './modificar-chofer/modificar-chofer.co
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule, 
+    MatButtonModule, ReactiveFormsModule, MatInputModule, 
+    MatCardModule, MatToolbarModule, MatIconModule, MatDialogModule, MatTableModule
   ],
   exports: [
     HeaderComponent,

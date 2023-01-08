@@ -3,33 +3,28 @@
         <mat-card-title>Nuevo Chofer</mat-card-title>
     </div>   
     <br>
-    <form>
-        <div class="elementos">
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Cedula" formControlName="ci">
-            </mat-form-field>
+    <form [formGroup]="choferNuevo">
+        <mat-form-field class="campos-field">
+            <input matInput placeholder="Cedula" formControlName="cedula">
+        </mat-form-field>
     
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Disponibilidad" formControlName="disponibilidad">
-            </mat-form-field>
-        </div>
-        
-        <div class="elementos">
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Nombres" formControlName="nombre">
-            </mat-form-field>
+        <mat-form-field class="campos-field">
+            <input matInput placeholder="Nombres" formControlName="nombres">
+        </mat-form-field>
+        <mat-form-field class="campos-field">
+            <input matInput placeholder="Apellidos" formControlName="apellidos">
+        </mat-form-field>
     
-            <mat-form-field class="campos-field">
-                <input matInput placeholder="Apellidos" formControlName="apellido">
-            </mat-form-field>
-        </div>
+        <mat-form-field class="campos-field">
+            <input matInput placeholder="Disponibilidad" formControlName="disponibilidad">
+        </mat-form-field>
 
         <div class="botones">
             <div class="acciones">
-                <button >Aceptar</button> 
+                <button mat-raised-button [disabled] = "!choferNuevo.valid" (click)="onSubmit()">Aceptar</button> 
             </div>
             <div class="acciones">
-                <button >Cancelar</button> 
+                <button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button> 
             </div>
               
         </div>
