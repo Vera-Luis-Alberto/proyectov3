@@ -1,0 +1,30 @@
+<mat-card> 
+    <div style="text-align:center;">
+        <mat-card-title>Nuevo Admin</mat-card-title>
+    </div>   
+    <br>
+    <form [formGroup]="adminNuevo">
+        <mat-form-field class="campos-field">
+            <input matInput placeholder="Cedula" formControlName="cedula">
+        </mat-form-field>
+    
+        <mat-form-field class="campos-field">
+            <input matInput placeholder="Nombres" formControlName="nombres">
+        </mat-form-field>
+        <mat-form-field class="campos-field">
+            <input matInput placeholder="Apellidos" formControlName="apellidos">
+        </mat-form-field>
+
+        <div class="botones">
+            <div class="acciones">
+                <button mat-raised-button [disabled] = "!adminNuevo.valid" (click)="onSubmit()">Aceptar</button> 
+            </div>
+            <div class="acciones">
+                <button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button> 
+            </div>
+              
+        </div>
+           
+    </form>
+    
+</mat-card>

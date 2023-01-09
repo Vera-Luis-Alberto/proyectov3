@@ -1,0 +1,58 @@
+<div class="contenedor">
+    <mat-form-field>
+      <input matInput [formControl]="buscar" placeholder="Buscar">
+    </mat-form-field>
+    <button mat-raised-button (click)="buscarAdminCed()">Buscar</button>
+    <div class="tabla">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- cedula Column -->
+        <ng-container matColumnDef="cedula">
+          <th mat-header-cell *matHeaderCellDef> Ci. </th>
+          <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+        </ng-container>
+      
+        <!-- nombre Column -->
+        <ng-container matColumnDef="nombres">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+        </ng-container>
+      
+        <!-- apellido Column -->
+        <ng-container matColumnDef="apellidos">
+          <th mat-header-cell *matHeaderCellDef> Apellido </th>
+          <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+        </ng-container>
+
+    
+        <!-- Botón Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+            
+            <div class="acciones">
+              <div class="modificar">
+                <button (click)="openDialogModificar(element.cedula,element.nombres,element.apellidos)" mat-raised-button color="primary" mat-button >Modificar</button>
+              </div>
+              <div class="eliminar">
+                <button  mat-raised-button color="primary" mat-button (click)="eliminar(element.cedula)">Eliminar</button>
+              </div>    
+            </div>
+            
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  
+    <div class="boton">
+      <button  (click)="openDialogAgregar()" mat-raised-button color="primary">Nuevo</button>
+    </div>
+  
+  </div>
+  

@@ -9,6 +9,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { ChoferInterface } from 'src/app/interfaces/choferInterface';
 
+
 @Component({
   selector: 'app-chofer',
   templateUrl: './chofer.component.html',

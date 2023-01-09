@@ -6,12 +6,10 @@ import { PageInicialComponent } from './page-inicial/page-inicial.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { SecretariaComponent } from './secretaria/secretaria.component';
 import { ChoferComponent } from './chofer/chofer.component';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { NuevoChoferComponent } from './nuevo-chofer/nuevo-chofer.component';
 import { ModificarChoferComponent } from './modificar-chofer/modificar-chofer.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +19,13 @@ import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import { GestionSecretariaComponent } from './gestion-secretaria/gestion-secretaria.component';
+import { GestionAdminComponent } from './gestion-admin/gestion-admin.component';
+import { NuevoAdminComponent } from './nuevo-admin/nuevo-admin.component';
+import { ModificarAdminComponent } from './modificar-admin/modificar-admin.component';
+import { NuevoSecretariaComponent } from './nuevo-secretaria/nuevo-secretaria.component';
+import { ModificarSecretariaComponent } from './modificar-secretaria/modificar-secretaria.component';
+
 
 @NgModule({
   declarations: [
@@ -29,11 +34,17 @@ import {MatTableModule} from '@angular/material/table';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    SecretariaComponent,
     ChoferComponent,
     AdministradorComponent,
     NuevoChoferComponent,
-    ModificarChoferComponent
+    ModificarChoferComponent,
+    GestionSecretariaComponent,
+    GestionAdminComponent,
+    GestionAdminComponent,
+    NuevoAdminComponent,
+    ModificarAdminComponent,
+    NuevoSecretariaComponent,
+    ModificarSecretariaComponent
   ],
   imports: [
     CommonModule,
