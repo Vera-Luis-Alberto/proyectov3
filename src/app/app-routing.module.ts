@@ -11,7 +11,8 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'chofer', component: ChoferComponent},
   {path:'secretaria', component: GestionSecretariaComponent},
-  {path:'admin', component: GestionAdminComponent}
+  {path:'admin', component: GestionAdminComponent},
+  {path:'**', pathMatch: 'full', redirectTo: ''}
 ];
 
 @NgModule({

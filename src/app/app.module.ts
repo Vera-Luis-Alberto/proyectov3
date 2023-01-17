@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import { ChoferComponent } from './ui/chofer/chofer.component';
 import { RouterModule } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [

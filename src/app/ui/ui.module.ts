@@ -26,6 +26,7 @@ import { ModificarAdminComponent } from './modificar-admin/modificar-admin.compo
 import { NuevoSecretariaComponent } from './nuevo-secretaria/nuevo-secretaria.component';
 import { ModificarSecretariaComponent } from './modificar-secretaria/modificar-secretaria.component';
 import { RouterModule } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { RouterModule } from '@angular/router';
     PageInicialComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent
   ]
 })
 export class UiModule { }

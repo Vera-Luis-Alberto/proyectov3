@@ -15,7 +15,15 @@
           <br>
           <input type="password" placeholder="Contraseña">
         </div>
-          
+        <form [formGroup]="usuarioLogin" (ngSubmit)="onSubmit()">
+          <mat-form-field class="campos-field">
+              <input matInput placeholder="Usuario" formControlName="usuario">
+          </mat-form-field>
+  
+          <mat-form-field class="campos-field">
+              <input matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+        </form>
           <br><br>
           
         <div class="remember-me--forget-password">
@@ -24,8 +32,8 @@
             <label>¿Olvidaste la contraseña?</label>
         </div>   
           <br>
-          <button>Login</button>
+          <button (click)="onSubmit()">Login</button>
       </div>
-      
+      <!-- <app-header> </app-header>  -->
     </div>
   </div>

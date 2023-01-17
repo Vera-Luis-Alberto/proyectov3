@@ -5,11 +5,30 @@
         <span>Camioncitos</span>
       </a>
     </div>
+    <div>
+      <a (click)="Inicio()" *ngIf="dataService.lvl===1">
+        <span>Secretarias</span>
+      </a>
+      <a (click)="Inicio()" *ngIf="dataService.lvl===3">
+        <span>Administradores</span>
+      </a>
+      <a (click)="Inicio()" *ngIf="dataService.lvl===3 || dataService.lvl===2">
+        <span>Choferes</span>
+      </a>
+      <a (click)="Inicio()" *ngIf="dataService.lvl===3 || dataService.lvl===2">
+        <span>Vehiculos</span>
+      </a>
+      <a (click)="Inicio()" *ngIf="dataService.lvl===3 || dataService.lvl===2">
+         <span>Pedidos</span>
+      </a>
+      <a (click)="Inicio()" *ngIf="dataService.lvl===1">
+        <span>Pedidos Pendientes</span>
+      </a>
+    </div>
     <div class="links">
       <nav>
-        <!-- <button (click)="btnSesion()" mat-raised-button color="primary">Iniciar sesión</button> -->
-        <button [routerLink]="['']" mat-raised-button color="primary" (click)="btnIniciarSesion()">Iniciar Sesion</button>
-        <button [routerLink]="['chofer']" mat-raised-button color="primary" (click)="CerrarSesion()">Cerrar Sesion</button>
+        <button *ngIf="dataService.lvl===0" mat-raised-button color="primary" (click)="btnIniciarSesion()">Iniciar Sesion</button>
+        <button *ngIf="dataService.lvl != 0"mat-raised-button color="primary" (click)="CerrarSesion()">Cerrar Sesion</button>
       </nav>
     </div>
 </mat-toolbar>
