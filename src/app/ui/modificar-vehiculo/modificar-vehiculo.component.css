@@ -1,0 +1,10 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.elementos{
+    margin:0px auto;
+
+}

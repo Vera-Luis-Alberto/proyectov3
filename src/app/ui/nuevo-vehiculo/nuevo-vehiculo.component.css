@@ -1,0 +1,23 @@
+.elementos{
+    display: flex;
+    flex-direction: column;
+}
+.botones{
+    display: flex;
+    justify-content: center;
+}
+
+.acciones{
+    padding: 5px;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.elementos{
+    margin:0px auto;
+
+}

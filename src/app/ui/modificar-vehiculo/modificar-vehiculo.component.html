@@ -1,0 +1,39 @@
+<mat-dialog-content>
+    <div class="contenedor">
+        <mat-card> 
+            <div style="text-align:center;">
+                <mat-card-title>Modificar Vehiculo</mat-card-title>
+            </div>   
+            <br>
+            <form [formGroup]="vehiculoModificar">
+                <div class="elementos">
+                    <mat-form-field class="campos-field">
+                        <input matInput placeholder="Matricula" formControlName="matricula">
+                    </mat-form-field>
+                </div>
+                
+                <div class="elementos">
+                    <mat-form-field class="campos-field">
+                        <input matInput placeholder="Marca" formControlName="marca">
+                    </mat-form-field>
+                </div>
+                
+                <div class="elementos">
+                    <mat-form-field class="campos-field">
+                        <input matInput placeholder="Disponibilidad" formControlName="disponibilidad">
+                    </mat-form-field>
+                </div>
+                
+                <div class="elementos">
+                    <mat-form-field class="campos-field">
+                        <input matInput placeholder="Tipo" formControlName="tipo">
+                    </mat-form-field>
+                </div>
+
+                <button mat-raised-button [disabled] = "!vehiculoModificar.valid" (click)="onSubmit(vehiculoModificar.value.matricula!, vehiculoModificar.value.marca!, vehiculoModificar.value.disponibilidad!, vehiculoModificar.value.tipo! )">Modificar</button>
+                <button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>      
+            </form>
+        </mat-card>
+    </div>
+    
+</mat-dialog-content>
