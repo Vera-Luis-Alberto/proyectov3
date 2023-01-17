@@ -25,7 +25,7 @@ import { NuevoAdminComponent } from './nuevo-admin/nuevo-admin.component';
 import { ModificarAdminComponent } from './modificar-admin/modificar-admin.component';
 import { NuevoSecretariaComponent } from './nuevo-secretaria/nuevo-secretaria.component';
 import { ModificarSecretariaComponent } from './modificar-secretaria/modificar-secretaria.component';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { ModificarSecretariaComponent } from './modificar-secretaria/modificar-s
   imports: [
     CommonModule,
     MaterialModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule, RouterModule,
     MatButtonModule, ReactiveFormsModule, MatInputModule, 
     MatCardModule, MatToolbarModule, MatIconModule, MatDialogModule, MatTableModule
   ],

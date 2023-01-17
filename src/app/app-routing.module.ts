@@ -8,16 +8,17 @@ import { GestionAdminComponent } from './ui/gestion-admin/gestion-admin.componen
 
 const routes: Routes = [
   {path:'', component: PageInicialComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'chofer', component: ChoferComponent},
-  {path: 'secretaria', component: GestionSecretariaComponent},
-  {path: 'admin', component: GestionAdminComponent}
+  {path:'login', component: LoginComponent},
+  {path:'chofer', component: ChoferComponent},
+  {path:'secretaria', component: GestionSecretariaComponent},
+  {path:'admin', component: GestionAdminComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule {
 
 }

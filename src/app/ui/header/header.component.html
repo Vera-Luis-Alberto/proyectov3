@@ -1,13 +1,15 @@
 <mat-toolbar class="nav" color="primary" >
     <div class="imglogin">
-      <a (click)="btnClickinicio()">
+      <a (click)="Inicio()">
         <mat-icon> directions_bus</mat-icon>
         <span>Camioncitos</span>
       </a>
     </div>
     <div class="links">
       <nav>
-        <button (click)="btnClick()" mat-raised-button color="primary">Iniciar sesión</button>
+        <!-- <button (click)="btnSesion()" mat-raised-button color="primary">Iniciar sesión</button> -->
+        <button [routerLink]="['']" mat-raised-button color="primary" (click)="btnIniciarSesion()">Iniciar Sesion</button>
+        <button [routerLink]="['chofer']" mat-raised-button color="primary" (click)="CerrarSesion()">Cerrar Sesion</button>
       </nav>
     </div>
-  </mat-toolbar>
+</mat-toolbar>

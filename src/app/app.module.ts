@@ -16,6 +16,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import { ChoferComponent } from './ui/chofer/chofer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ChoferComponent } from './ui/chofer/chofer.component';
     UiModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserModule, 
+    BrowserModule, RouterModule,
     MatButtonModule, ReactiveFormsModule, 
     MatCardModule, MatToolbarModule, MatIconModule, MatDialogModule, MatTableModule
   ],

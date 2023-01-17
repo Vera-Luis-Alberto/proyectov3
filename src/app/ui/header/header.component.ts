@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 
-
 export class HeaderComponent {
-  constructor(private router: Router) {}
-  btnClick(){
-    this.router.navigateByUrl('/login');
-    };
 
-    btnClickinicio(){
-      this.router.navigateByUrl('');
-      };
+  userName : string = '';
+
+  constructor(private router: Router) {}
+
+  btnIniciarSesion(){
+    this.router.navigateByUrl('/login');
+  };
+    
+  CerrarSesion(){
+    this.router.navigate(['/']);
+    this.userName = '';
+  }
+
+  Inicio(){
+    this.router.navigate(['/']);
+  }
 }
