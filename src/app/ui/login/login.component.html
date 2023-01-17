@@ -7,30 +7,27 @@
         </div>
       </div>
       
-      
         <div class="right">
-        <p>¿No tienes una cuenta? <button (click)="openDialog()">Crea una</button> solo te tomará unos segundos</p>
-        <div class="inputs">
-          <input type="text" placeholder="Usuario">
-          <br>
-          <input type="password" placeholder="Contraseña">
-        </div>
+        
+        
         <form [formGroup]="usuarioLogin" (ngSubmit)="onSubmit()">
-          <mat-form-field class="campos-field">
-              <input matInput placeholder="Usuario" formControlName="usuario">
-          </mat-form-field>
+          <div class="contenedorIngreso">
+            <div class="ingreso">
+              <mat-form-field class="campos-field">
+                <input matInput placeholder="Usuario" formControlName="usuario">
+              </mat-form-field>
+            </div>
   
-          <mat-form-field class="campos-field">
-              <input matInput placeholder="Password" formControlName="password">
-          </mat-form-field>
+            <div class="ingreso">
+              <mat-form-field class="campos-field">
+                <input matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+            </div>
+          </div>
         </form>
           <br><br>
           
-        <div class="remember-me--forget-password">
-          <mat-checkbox id="z" ></mat-checkbox> 
-            <label>Recordar usuario</label>    
-            <label>¿Olvidaste la contraseña?</label>
-        </div>   
+        
           <br>
           <button (click)="onSubmit()">Login</button>
       </div>

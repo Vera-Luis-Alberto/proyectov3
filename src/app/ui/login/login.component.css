@@ -137,3 +137,16 @@ body {
     margin-top: 150px;
     margin-bottom: 115px;
   }
+
+  .contenedorIngreso{
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+
+  .ingreso{
+    margin-left: 5px;
+    margin-right: 5px;
+  }

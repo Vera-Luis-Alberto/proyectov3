@@ -5,6 +5,8 @@ import { LoginComponent } from './ui/login/login.component';
 import { ChoferComponent } from './ui/chofer/chofer.component';
 import { GestionSecretariaComponent } from './ui/gestion-secretaria/gestion-secretaria.component';
 import { GestionAdminComponent } from './ui/gestion-admin/gestion-admin.component';
+import { GestionarPedidoComponent } from './ui/gestionar-pedido/gestionar-pedido.component';
+import { VehiculoComponent } from './ui/vehiculo/vehiculo.component';
 
 const routes: Routes = [
   {path:'', component: PageInicialComponent},
@@ -12,7 +14,10 @@ const routes: Routes = [
   {path:'chofer', component: ChoferComponent},
   {path:'secretaria', component: GestionSecretariaComponent},
   {path:'admin', component: GestionAdminComponent},
-  {path:'**', pathMatch: 'full', redirectTo: ''}
+  {path:'pedido', component: GestionarPedidoComponent},
+  {path:'vehiculo', component: VehiculoComponent},
+
+
 ];
 
 @NgModule({

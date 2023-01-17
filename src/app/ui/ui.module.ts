@@ -27,6 +27,13 @@ import { NuevoSecretariaComponent } from './nuevo-secretaria/nuevo-secretaria.co
 import { ModificarSecretariaComponent } from './modificar-secretaria/modificar-secretaria.component';
 import { RouterModule } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
+import { NuevoPedidoComponent } from './nuevo-pedido/nuevo-pedido.component';
+import { ModificarPedidoComponent } from './modificar-pedido/modificar-pedido.component';
+import { GestionarPedidoComponent } from './gestionar-pedido/gestionar-pedido.component';
+import { NuevoVehiculoComponent } from './nuevo-vehiculo/nuevo-vehiculo.component';
+import { ModificarVehiculoComponent } from './modificar-vehiculo/modificar-vehiculo.component';
+import { VehiculoComponent } from './vehiculo/vehiculo.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +52,15 @@ import { MatDialogRef } from '@angular/material/dialog';
     NuevoAdminComponent,
     ModificarAdminComponent,
     NuevoSecretariaComponent,
-    ModificarSecretariaComponent
+    ModificarSecretariaComponent,
+    NuevoPedidoComponent,
+    ModificarPedidoComponent,
+    GestionarPedidoComponent,
+    NuevoVehiculoComponent,
+    ModificarVehiculoComponent,
+    VehiculoComponent,
+    
+
   ],
   imports: [
     CommonModule,
