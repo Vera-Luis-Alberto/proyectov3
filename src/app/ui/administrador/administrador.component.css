@@ -1,0 +1,39 @@
+.contenedor{
+    display: grid;
+    min-height: 100vh;  
+    grid-template-rows:auto 2fr auto;
+  }
+  
+  .tabla{
+      margin-top: 50px;
+      align-self: center;
+      width: 1300px;
+      justify-content: space-between;
+  }
+  
+  .boton{
+      margin-left: 215px;
+      margin-top: 50px;
+  }
+  
+  .acciones{
+      display: flex;
+      justify-content: center;
+  }
+  
+  .modificar{
+      margin-left: 10px;
+      margin-right: 10px;
+  }
+  
+  .eliminar{
+      margin-left: 10px;
+      margin-right: 10px;
+  }
+  
+  .contenedor{
+      display: flex;
+      flex-direction: column;
+  }
+  
+  

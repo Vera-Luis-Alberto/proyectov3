@@ -1,7 +1,7 @@
 .contenedor{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  display: grid;
+  min-height: 100vh;  
+  grid-template-rows:auto 2fr auto;
 }
 
 .tabla{
@@ -29,5 +29,10 @@
 .eliminar{
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
 }
 
