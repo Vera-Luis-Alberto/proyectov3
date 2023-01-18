@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   lvl: number = 0;
+  lvlName: string = '';
 
-  constructor() { }
+  constructor() { 
+  }
 }

@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit{
     this.dialog.open(RegisterComponent, dialogConfig);
   };
 
-
   onSubmit(){
     console.log(this.usuarioLogin.value);
     let userLog = this.usuarioLogin.value.usuario;
@@ -66,13 +65,16 @@ export class LoginComponent implements OnInit{
     })
     this.dataService.lvl = lvlRes;
     if(lvlRes === 1){
-      this.router.navigate(['/chofer']);
+      this.dataService.lvlName = 'Chofer'
+      this.router.navigate(["gestion-pedido", lvlRes]);
     }
     if(lvlRes === 2){
-      this.router.navigate(['/secretaria']);
+      this.dataService.lvlName = 'Secretaria'
+      this.router.navigate(["gestion-chofer", lvlRes]);
     }
     if(lvlRes === 3){
-      this.router.navigate(['/administrador']);
+      this.dataService.lvlName = 'Admin'
+      this.router.navigate(["gestion-secretaria", lvlRes]);
     }
     if(lvlRes === 0){
       alert("Usuario o contraseña invalido")

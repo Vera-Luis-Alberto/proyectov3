@@ -6,25 +6,26 @@
       </a>
     </div>
     <div class="enlace">
-      <a (click)="Inicio()" *ngIf="dataService.lvl===1">
+      <a *ngIf="dataService.lvl===3" [routerLink]="['/gestion-secretaria', dataService.lvl]">
         <span>Secretarias</span>
       </a>
-      <a (click)="Inicio()" *ngIf="dataService.lvl===3">
+      <a *ngIf="dataService.lvl===3" [routerLink]="['/gestion-admin', dataService.lvl]">
         <span>Administradores</span>
       </a>
-      <a (click)="Inicio()" *ngIf="dataService.lvl===3 || dataService.lvl===2">
+      <a *ngIf="dataService.lvl===3 || dataService.lvl===2" [routerLink]="['/gestion-chofer', dataService.lvl]">
         <span>Choferes</span>
       </a>
-      <a (click)="Inicio()" *ngIf="dataService.lvl===3 || dataService.lvl===2">
+      <a *ngIf="dataService.lvl===3 || dataService.lvl===2" [routerLink]="['/gestion-vehiculo', dataService.lvl]">
         <span>Vehiculos</span>
       </a>
-      <a (click)="Inicio()" *ngIf="dataService.lvl===3 || dataService.lvl===2">
+      <a *ngIf="dataService.lvl===3 || dataService.lvl===2" [routerLink]="['/gestion-pedido', dataService.lvl]">
          <span>Pedidos</span>
       </a>
-      <a (click)="Inicio()" *ngIf="dataService.lvl===1">
+      <a *ngIf="dataService.lvl===1" [routerLink]="['/gestion-pedido', dataService.lvl]">
         <span>Pedidos Pendientes</span>
       </a>
     </div>
+    <span id="bienvenida" *ngIf="dataService.lvl === 1 || dataService.lvl === 2 || dataService.lvl === 3"> Bienvenido {{dataService.lvlName}}</span>
     <div class="links">
       <nav>
         <button *ngIf="dataService.lvl===0" mat-raised-button color="primary" (click)="btnIniciarSesion()">Iniciar Sesion</button>

@@ -6,9 +6,10 @@
 a{
     cursor: pointer;
     margin-left: 20px;
+    text-decoration: none;
+    color: white;
+    text-decoration: underline;
 }
-
-
 
 @media only screen and (max-width: 750px){
     .nav{
@@ -18,3 +19,7 @@ a{
         justify-content: center;
     }
 }
+
+/* #bienvenida{
+    margin-left: 30rem;
+} */

@@ -12,7 +12,16 @@ import { DataService } from 'src/app/services/data.service';
 
 export class HeaderComponent implements OnInit{
 
-  constructor(private router: Router, public dataService: DataService) {}
+  // lvlName : string = '';
+
+  constructor(private router: Router, public dataService: DataService) {
+
+  // if (dataService.lvl === 1) {this.lvlName = 'Chofer'};
+  // if (dataService.lvl === 2) {this.lvlName = 'Secretaria'};
+  // if (dataService.lvl === 3) {this.lvlName = 'Administrador'};
+  // console.log('HEREEEEEEEEEEEEEE');
+  // console.log(this.lvlName);
+  }
 
   btnIniciarSesion(){
     this.router.navigateByUrl('/login');
@@ -21,6 +30,7 @@ export class HeaderComponent implements OnInit{
   CerrarSesion(){
     this.router.navigate(['/']);
     this.dataService.lvl = 0;
+    this.dataService.lvlName = '';
   }
 
   Inicio(){

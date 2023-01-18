@@ -11,13 +11,11 @@ import { VehiculoComponent } from './ui/vehiculo/vehiculo.component';
 const routes: Routes = [
   {path:'', component: PageInicialComponent},
   {path:'login', component: LoginComponent},
-  {path:'chofer', component: ChoferComponent},
-  {path:'secretaria', component: GestionSecretariaComponent},
-  {path:'admin', component: GestionAdminComponent},
-  {path:'pedido', component: GestionarPedidoComponent},
-  {path:'vehiculo', component: VehiculoComponent},
-
-
+  {path:'gestion-chofer/:id', component: ChoferComponent},
+  {path:'gestion-secretaria/:id', component: GestionSecretariaComponent},
+  {path:'gestion-admin/:id', component: GestionAdminComponent},
+  {path:'gestion-pedido/:id', component: GestionarPedidoComponent},
+  {path:'gestion-vehiculo/:id', component: VehiculoComponent}
 ];
 
 @NgModule({
