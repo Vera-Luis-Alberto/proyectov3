@@ -7,6 +7,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { NavigationExtras, Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChoferInterface } from 'src/app/interfaces/choferInterface';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-modificar-chofer',
@@ -15,7 +16,7 @@ import { ChoferInterface } from 'src/app/interfaces/choferInterface';
 })
 export class ModificarChoferComponent {
   
-  constructor(private router: Router, private dialogRef: MatDialogRef<ModificarChoferComponent>, @Inject(MAT_DIALOG_DATA) public data: ChoferInterface) { 
+  constructor(private router: Router, private dialogRef: MatDialogRef<ModificarChoferComponent>, @Inject(MAT_DIALOG_DATA) public data: ChoferInterface, private dataService: DataService) { 
     this.choferModificar.patchValue({
       cedula: data.cedula,
       nombres: data.nombres,
@@ -52,13 +53,13 @@ export class ModificarChoferComponent {
     };
 
     this.dialogRef.close(); 
-    this.redirectTo('/chofer', objToSend);
+    this.redirectTo("gestion-chofer", this.dataService.lvl, objToSend);
 
   }
 
-  redirectTo(uri:string, objToSend:NavigationExtras){
+  redirectTo(uri:string, uriparam:number, objToSend:NavigationExtras){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri],{ state: { datosChofer: objToSend}}));
+    this.router.navigate([uri,uriparam],{ state: { datosChofer: objToSend}}));
   }
 
   cancelar()

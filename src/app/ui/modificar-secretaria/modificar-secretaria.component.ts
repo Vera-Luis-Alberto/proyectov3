@@ -3,6 +3,7 @@ import { SecretariaInterface } from 'src/app/interfaces/secretariaInterface';
 import { NavigationExtras, Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-modificar-secretaria',
@@ -13,7 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export class ModificarSecretariaComponent {
   
-  constructor(private router: Router, private dialogRef: MatDialogRef<ModificarSecretariaComponent>, @Inject(MAT_DIALOG_DATA) public data: SecretariaInterface) { 
+  constructor(private router: Router, private dialogRef: MatDialogRef<ModificarSecretariaComponent>, @Inject(MAT_DIALOG_DATA) public data: SecretariaInterface,private dataService: DataService) { 
     this.secretariaModificar.patchValue({
       cedula: data.cedula,
       nombres: data.nombres,
@@ -47,13 +48,13 @@ export class ModificarSecretariaComponent {
     };
 
     this.dialogRef.close(); 
-    this.redirectTo('/secretaria', objToSend);
+    this.redirectTo("gestion-secretaria", this.dataService.lvl, objToSend);
 
   }
 
-  redirectTo(uri:string, objToSend:NavigationExtras){
+  redirectTo(uri:string, uriparam:number, objToSend:NavigationExtras){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri],{ state: { datosSecretaria: objToSend}}));
+    this.router.navigate([uri,uriparam],{ state: { datosSecretaria: objToSend}}));
   }
 
   cancelar()

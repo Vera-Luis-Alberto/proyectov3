@@ -7,6 +7,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PedidoInterface } from 'src/app/interfaces/pedidoInterface';
 import { GestionarPedidoComponent } from '../gestionar-pedido/gestionar-pedido.component';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-modificar-pedido',
@@ -14,7 +15,7 @@ import { GestionarPedidoComponent } from '../gestionar-pedido/gestionar-pedido.c
   styleUrls: ['./modificar-pedido.component.css']
 })
 export class ModificarPedidoComponent {
-  constructor(private router: Router, private dialogRef: MatDialogRef<ModificarPedidoComponent>, @Inject(MAT_DIALOG_DATA) public data: PedidoInterface) { 
+  constructor(private router: Router, private dialogRef: MatDialogRef<ModificarPedidoComponent>, @Inject(MAT_DIALOG_DATA) public data: PedidoInterface, private dataService: DataService) { 
     this.pedidoModificar.patchValue({
       id: data.id,
       cliente: data.cliente,
@@ -51,13 +52,13 @@ export class ModificarPedidoComponent {
     };
 
     this.dialogRef.close(); 
-    this.redirectTo('/pedido', objToSend);
+    this.redirectTo("gestion-pedido", this.dataService.lvl, objToSend);
 
   }
 
-  redirectTo(uri:string, objToSend:NavigationExtras){
+  redirectTo(uri:string, uriparam:number, objToSend:NavigationExtras){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri],{ state: { datosPedido: objToSend}}));
+    this.router.navigate([uri,uriparam],{ state: { datosPedido: objToSend}}));
   }
 
   cancelar()

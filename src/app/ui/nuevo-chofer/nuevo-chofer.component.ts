@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NavigationExtras, Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-nuevo-chofer',
@@ -9,7 +10,7 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./nuevo-chofer.component.css']
 })
 export class NuevoChoferComponent implements OnInit{
-  constructor(private router: Router, private dialogRef: MatDialogRef<NuevoChoferComponent>){
+  constructor(private router: Router, private dialogRef: MatDialogRef<NuevoChoferComponent>, private dataService: DataService){
   }
 
   ngOnInit(): void {
@@ -36,13 +37,13 @@ export class NuevoChoferComponent implements OnInit{
     };
 
     this.dialogRef.close(); 
-    this.redirectTo('/chofer', objToSend);
+    this.redirectTo("gestion-chofer", this.dataService.lvl, objToSend);
 
   }
 
-  redirectTo(uri:string, objToSend:NavigationExtras){
+  redirectTo(uri:string, uriparam:number, objToSend:NavigationExtras){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri],{ state: { datosChofer: objToSend}}));
+    this.router.navigate([uri,uriparam],{ state: { datosChofer: objToSend}}));
   }
 
   cancelar()

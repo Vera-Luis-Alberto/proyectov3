@@ -3,6 +3,7 @@ import { AdminInterface } from 'src/app/interfaces/adminInterface';
 import { NavigationExtras, Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-modificar-admin',
@@ -11,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ModificarAdminComponent {
   
-  constructor(private router: Router, private dialogRef: MatDialogRef<ModificarAdminComponent>, @Inject(MAT_DIALOG_DATA) public data: AdminInterface) { 
+  constructor(private router: Router, private dialogRef: MatDialogRef<ModificarAdminComponent>, @Inject(MAT_DIALOG_DATA) public data: AdminInterface, private dataService: DataService) { 
     this.adminModificar.patchValue({
       cedula: data.cedula,
       nombres: data.nombres,
@@ -45,13 +46,13 @@ export class ModificarAdminComponent {
     };
 
     this.dialogRef.close(); 
-    this.redirectTo('/admin', objToSend);
+    this.redirectTo("gestion-admin", this.dataService.lvl, objToSend);
 
   }
 
-  redirectTo(uri:string, objToSend:NavigationExtras){
+  redirectTo(uri:string, uriparam:number, objToSend:NavigationExtras){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri],{ state: { datosAdmin: objToSend}}));
+    this.router.navigate([uri,uriparam],{ state: { datosAdmin: objToSend}}));
   }
 
   cancelar()

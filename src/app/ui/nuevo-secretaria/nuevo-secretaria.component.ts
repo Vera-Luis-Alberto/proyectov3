@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NavigationExtras, Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-nuevo-secretaria',
@@ -10,7 +11,7 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class NuevoSecretariaComponent {
 
-  constructor(private router: Router, private dialogRef: MatDialogRef<NuevoSecretariaComponent>){
+  constructor(private router: Router, private dialogRef: MatDialogRef<NuevoSecretariaComponent>, private dataService: DataService){
   }
 
   ngOnInit(): void {
@@ -35,12 +36,12 @@ export class NuevoSecretariaComponent {
     };
 
     this.dialogRef.close(); 
-    this.redirectTo('/secretaria', objToSend);
+    this.redirectTo("gestion-secretaria", this.dataService.lvl, objToSend);
   }
 
-  redirectTo(uri:string, objToSend:NavigationExtras){
+  redirectTo(uri:string, uriparam:number, objToSend:NavigationExtras){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri],{ state: { datosSecretaria: objToSend}}));
+    this.router.navigate([uri,uriparam],{ state: { datosSecretaria: objToSend}}));
   }
 
   cancelar()

@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NavigationExtras, Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-nuevo-vehiculo',
@@ -10,7 +11,7 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class NuevoVehiculoComponent implements OnInit {
 
-  constructor(private router: Router, private dialogRef: MatDialogRef<NuevoVehiculoComponent>){
+  constructor(private router: Router, private dialogRef: MatDialogRef<NuevoVehiculoComponent>, private dataService: DataService){
   }
 
   ngOnInit(): void {
@@ -38,12 +39,12 @@ export class NuevoVehiculoComponent implements OnInit {
     };
 
     this.dialogRef.close(); 
-    this.redirectTo('/vehiculo', objToSend);
+    this.redirectTo("gestion-vehiculo", this.dataService.lvl, objToSend);
   }
 
-  redirectTo(uri:string, objToSend:NavigationExtras){
+  redirectTo(uri:string, uriparam:number, objToSend:NavigationExtras){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri],{ state: { datosVehiculo: objToSend}}));
+    this.router.navigate([uri,uriparam],{ state: { datosVehiculo: objToSend}}));
   }
 
   cancelar()
