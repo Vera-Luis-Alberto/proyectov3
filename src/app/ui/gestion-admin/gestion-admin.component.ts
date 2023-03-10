@@ -4,8 +4,9 @@ import { ModificarAdminComponent } from '../modificar-admin/modificar-admin.comp
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { AdminInterface } from 'src/app/interfaces/adminInterface';
 import { ActivatedRoute, Router} from '@angular/router';
+import { AdminInterface } from 'src/app/interfaces/adminInterface';
+import { AdmiService } from 'src/app/services/admi.service';
 
 
 @Component({
@@ -18,12 +19,7 @@ export class GestionAdminComponent implements OnInit{
   dataSource: any = [];
   displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'acciones'];
 
-  data = [
-    {cedula: '0432423565', nombres: 'Luis Alberto', apellidos: 'Vera García' },
-    {cedula: '0910392480', nombres: 'Cesar Francisco', apellidos: 'Carrión Loaiza' },
-    {cedula: '0823453534', nombres: 'Jesus Alberto', apellidos: 'Monserrate Reyna' },
-    {cedula: '0465465573', nombres: 'Braulio ', apellidos: 'Marcalupo Zamora'},
-  ];
+  data: any = [];
 
   buscar = new FormControl('');
   buscarAdminCed() {
@@ -33,11 +29,11 @@ export class GestionAdminComponent implements OnInit{
   nuevoAdmin:any;
   nav: any;
 
-  constructor(private router: Router, private dialog:MatDialog, ){
+  constructor(private router: Router, private dialog:MatDialog, private api:AdmiService){
     this.nav = this.router.getCurrentNavigation();
     this.nuevoAdmin = this.nav.extras.state;
 
-    if (this.nuevoAdmin != null)
+    /* if (this.nuevoAdmin != null)
     {
       var AdminModificado = this.nuevoAdmin.datosAdmin.queryParams;
       let mod = 0;
@@ -58,7 +54,7 @@ export class GestionAdminComponent implements OnInit{
       }
       console.log(this.nuevoAdmin.datosAdmin.queryParams);
       this.data.push(this.nuevoAdmin.datosAdmin.queryParams);
-    }
+    } */
   }
 
   openDialogAgregar(){
@@ -77,15 +73,19 @@ export class GestionAdminComponent implements OnInit{
 
   eliminar(cedula: string) {
     //Busca posicion del admin
-    let indice = this.data.findIndex((admin) => admin.cedula == cedula);
+    //let indice = this.data.findIndex((admin) => admin.cedula == cedula);
     //Elimina el admin
-    this.data.splice(indice, 1);
+    //this.data.splice(indice, 1);
     //Resultado
-    this.dataSource = new MatTableDataSource(this.data);
+    //this.dataSource = new MatTableDataSource(this.data);
   }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<AdminInterface>(this.data);
-    console.log(this.data);
+    this.api.getAdmi().subscribe(admi => {
+      if(admi){
+        this.dataSource = new MatTableDataSource(admi);
+        console.log(this.dataSource);
+      }
+    });
   }
 }

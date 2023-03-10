@@ -6,8 +6,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModificarChoferComponent } from '../modificar-chofer/modificar-chofer.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router} from '@angular/router';
+import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { ChoferInterface } from 'src/app/interfaces/choferInterface';
+import { ChoferService } from 'src/app/services/chofer.service';
 
 
 @Component({
@@ -21,12 +23,7 @@ export class ChoferComponent implements OnInit {
   dataSource: any = [];
   displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'disponibilidad', 'acciones'];
   
-  data = [
-    {cedula: '0913832718', nombres: 'Luis Alberto', apellidos: 'Vera García' , disponibilidad: 'Disponible'},
-    {cedula: '0913255678', nombres: 'Cesar Francisco', apellidos: 'Carrión Loaiza' , disponibilidad: 'No disponible'},
-    {cedula: '0823483248', nombres: 'Jesus Alberto', apellidos: 'Monserrate Reyna' , disponibilidad: 'Disponible'},
-    {cedula: '0458302573', nombres: 'Braulio ', apellidos: 'Marcalupo Zamora' , disponibilidad: 'Disponible'},
-  ];
+  data : any = [];
 
   buscar = new FormControl('');
   buscarChoferCed() {
@@ -36,12 +33,12 @@ export class ChoferComponent implements OnInit {
   nuevoChofer:any;
   nav: any;
 
-  constructor(private router: Router, private dialog:MatDialog, ) { 
+  constructor(private router: Router, private dialog:MatDialog,private api:ChoferService ) { 
     
     this.nav = this.router.getCurrentNavigation();
     this.nuevoChofer = this.nav.extras.state;
 
-    if (this.nuevoChofer != null)
+    /* if (this.nuevoChofer != null)
     {
       var ChoferModificado = this.nuevoChofer.datosChofer.queryParams;
       let mod = 0;
@@ -63,7 +60,7 @@ export class ChoferComponent implements OnInit {
       }
       console.log(this.nuevoChofer.datosChofer.queryParams);
       this.data.push(this.nuevoChofer.datosChofer.queryParams);
-    }
+    }*/
   };
 
   // openDialogAgregar() {
@@ -89,15 +86,19 @@ export class ChoferComponent implements OnInit {
 
   eliminar(cedula: string) {
     //Busca posicion del chofer
-    let indice = this.data.findIndex((chofer) => chofer.cedula == cedula);
+    //let indice = this.data.findIndex((chofer) => chofer.cedula == cedula);
     //Elimina el chofer
-    this.data.splice(indice, 1);
+    //this.data.splice(indice, 1);
     //Resultado
-    this.dataSource = new MatTableDataSource(this.data);
+    //this.dataSource = new MatTableDataSource(this.data);
   }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<ChoferInterface>(this.data);
-    console.log(this.data);
+    this.api.getChofer().subscribe(chofer => {
+      if(chofer){
+        this.dataSource = new MatTableDataSource(chofer);
+        console.log(this.dataSource);
+      }
+    });
   }
 }

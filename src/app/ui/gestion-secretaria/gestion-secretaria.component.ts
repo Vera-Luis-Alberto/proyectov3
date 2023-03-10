@@ -4,8 +4,9 @@ import { ModificarSecretariaComponent } from '../modificar-secretaria/modificar-
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { SecretariaInterface } from 'src/app/interfaces/secretariaInterface';
 import { ActivatedRoute, Router} from '@angular/router';
+import { SecretariaInterface } from 'src/app/interfaces/secretariaInterface';
+import { SecretariaService } from 'src/app/services/secretaria.service';
 
 
 @Component({
@@ -18,12 +19,7 @@ export class GestionSecretariaComponent implements OnInit{
   dataSource: any = [];
   displayedColumns: string[] = ['cedula', 'nombres', 'apellidos', 'acciones'];
 
-  data = [
-    {cedula: '0432423565', nombres: 'Luis Alberto', apellidos: 'Vera García' },
-    {cedula: '0910392480', nombres: 'Cesar Francisco', apellidos: 'Carrión Loaiza' },
-    {cedula: '0823453534', nombres: 'Jesus Alberto', apellidos: 'Monserrate Reyna' },
-    {cedula: '0465465573', nombres: 'Braulio ', apellidos: 'Marcalupo Zamora'},
-  ];
+  data: any = [];
 
   buscar = new FormControl('');
   buscarSecretariaCed() {
@@ -33,11 +29,11 @@ export class GestionSecretariaComponent implements OnInit{
   nuevoSecretaria:any;
   nav: any;
 
-  constructor(private router: Router, private dialog:MatDialog, ){
+  constructor(private router: Router, private dialog:MatDialog, private api:SecretariaService ){
     this.nav = this.router.getCurrentNavigation();
     this.nuevoSecretaria = this.nav.extras.state;
 
-    if (this.nuevoSecretaria != null)
+    /*if (this.nuevoSecretaria != null)
     {
       var SecretariaModificado = this.nuevoSecretaria.datosSecretaria.queryParams;
       let mod = 0;
@@ -58,10 +54,10 @@ export class GestionSecretariaComponent implements OnInit{
       }
       console.log(this.nuevoSecretaria.datosSecretaria.queryParams);
       this.data.push(this.nuevoSecretaria.datosSecretaria.queryParams);
-    }
+    }*/
   }
 
-  openDialogAgregar(){
+    openDialogAgregar(){
     this.dialog.open(NuevoSecretariaComponent, {
       width: '50%',
     })
@@ -77,16 +73,20 @@ export class GestionSecretariaComponent implements OnInit{
 
   eliminar(cedula: string) {
     //Busca posicion de la secretaria
-    let indice = this.data.findIndex((secretaria) => secretaria.cedula == cedula);
+    /*let indice = this.data.findIndex((secretaria) => secretaria.cedula == cedula);
     //Eliminar la secretaria
     this.data.splice(indice, 1);
     //Resultado
-    this.dataSource = new MatTableDataSource(this.data);
+    this.dataSource = new MatTableDataSource(this.data);*/
   }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<SecretariaInterface>(this.data);
-    console.log(this.data);
+    this.api.getSecretaria().subscribe(secretaria => {
+      if(secretaria){
+        this.dataSource = new MatTableDataSource(secretaria);
+        console.log(this.dataSource);
+      }
+    });
   }
 }
 

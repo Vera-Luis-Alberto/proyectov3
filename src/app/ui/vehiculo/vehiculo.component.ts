@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { VehiculoInterface } from 'src/app/interfaces/vehiculoInterface';
 import { NuevoVehiculoComponent } from '../nuevo-vehiculo/nuevo-vehiculo.component';
 import { ModificarVehiculoComponent } from '../modificar-vehiculo/modificar-vehiculo.component';
+import { VehiculoService } from 'src/app/services/vehiculos.service';
 
 @Component({
   selector: 'app-vehiculo',
@@ -17,13 +18,7 @@ export class VehiculoComponent implements OnInit {
   dataSource: any = [];
   displayedColumns: string[] = ['matricula', 'marca', 'disponibilidad', 'tipo', 'acciones'];
   
-  data = [
-    {matricula: 'GFC-712', marca: 'Chevrolet', disponibilidad: 'Disponible' , tipo: 'Camioneta'},
-    {matricula: 'PDS-122', marca: 'Kia', disponibilidad: 'No disponible' , tipo: 'Sedan'},
-    {matricula: 'GTA-734', marca: 'Chevrolet', disponibilidad: 'Disponible' , tipo: 'Camión'},
-    {matricula: 'PKC-341', marca: 'Dongfeng', disponibilidad: 'Disponible' , tipo: 'Camioneta'},
-    
-  ];
+  data: any = [];
 
   buscar = new FormControl('');
   buscarVehiculo() {
@@ -33,12 +28,12 @@ export class VehiculoComponent implements OnInit {
   nuevoVehiculo:any;
   nav: any;
 
-  constructor(private router: Router, private dialog:MatDialog, ) { 
+  constructor(private router: Router, private dialog:MatDialog, private api:VehiculoService) { 
     
     this.nav = this.router.getCurrentNavigation();
     this.nuevoVehiculo = this.nav.extras.state;
 
-    if (this.nuevoVehiculo != null)
+    /*if (this.nuevoVehiculo != null)
     {
       var VehiculoModificado = this.nuevoVehiculo.datosVehiculo.queryParams;
       let mod = 0;
@@ -60,7 +55,7 @@ export class VehiculoComponent implements OnInit {
       }
       console.log(this.nuevoVehiculo.datosVehiculo.queryParams);
       this.data.push(this.nuevoVehiculo.datosVehiculo.queryParams);
-    }
+    }*/
   };
 
   openDialogAgregar(){
@@ -79,16 +74,20 @@ export class VehiculoComponent implements OnInit {
 
   eliminar(matricula: string) {
     //Busca posicion del chofer
-    let indice = this.data.findIndex((vehiculo) => vehiculo.matricula == matricula);
+    //let indice = this.data.findIndex((vehiculo) => vehiculo.matricula == matricula);
     //Elimina el chofer
-    this.data.splice(indice, 1);
+    //this.data.splice(indice, 1);
     //Resultado
-    this.dataSource = new MatTableDataSource(this.data);
+    //this.dataSource = new MatTableDataSource(this.data);
   }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<VehiculoInterface>(this.data);
-    console.log(this.data);
+    this.api.getVehiculo().subscribe(vehiculo => {
+      if(vehiculo){
+        this.dataSource = new MatTableDataSource(vehiculo);
+        console.log(this.dataSource);
+      }
+    });
   }
 
 }

@@ -12,7 +12,7 @@ import { NuevoChoferComponent } from './nuevo-chofer/nuevo-chofer.component';
 import { ModificarChoferComponent } from './modificar-chofer/modificar-chofer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModel, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input'
 import {MatCardModule} from '@angular/material/card'
 import {MatToolbarModule} from '@angular/material/toolbar'
@@ -33,8 +33,10 @@ import { GestionarPedidoComponent } from './gestionar-pedido/gestionar-pedido.co
 import { NuevoVehiculoComponent } from './nuevo-vehiculo/nuevo-vehiculo.component';
 import { ModificarVehiculoComponent } from './modificar-vehiculo/modificar-vehiculo.component';
 import { VehiculoComponent } from './vehiculo/vehiculo.component';
-
-
+import { ChoferService } from '../services/chofer.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SecretariaService } from '../services/secretaria.service';
+import { AdmiService } from '../services/admi.service';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -75,7 +77,16 @@ import { VehiculoComponent } from './vehiculo/vehiculo.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    HttpClientModule,
     HeaderComponent
+  ],
+  providers: [
+    ChoferService,
+    SecretariaService,
+    AdmiService,
+    HttpClient,
+    HttpClientModule, 
+    NgModel
   ]
 })
 export class UiModule { }
