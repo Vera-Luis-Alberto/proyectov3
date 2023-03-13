@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AdminInterface } from '../interfaces/adminInterface';
 
@@ -8,11 +8,25 @@ import { AdminInterface } from '../interfaces/adminInterface';
 })
 export class AdmiService {
   private baseUrl = 'https://localhost:7291/api';
+  private httpOptions: Object = new Object();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('currentUser') as string)?.token}`
+      })
+    };
+    console.log(this.httpOptions);
+  }
 
   getAdmi(): Observable<AdminInterface[]> {
-    return this.http.get<AdminInterface[]>(this.baseUrl+'/Empleados/BuscarAdministradores');
+    return this.http.get<AdminInterface[]>(this.baseUrl+'/Empleados/BuscarAdministradores', this.httpOptions);
+  }
+
+  deleteAdmin(ci : string): Observable<AdminInterface[]> {
+    return this.http.delete<AdminInterface[]>(this.baseUrl+'/Empleados/DeleteEmpleado?cedula=' + ci,this.httpOptions);
   }
 
   /*addChoferInterface(ChoferInterface: ChoferInterface): Observable<any> {

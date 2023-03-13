@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router} from '@angular/router';
 import { SecretariaInterface } from 'src/app/interfaces/secretariaInterface';
 import { SecretariaService } from 'src/app/services/secretaria.service';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-gestion-secretaria',
@@ -29,10 +29,9 @@ export class GestionSecretariaComponent implements OnInit{
   nuevoSecretaria:any;
   nav: any;
 
-  constructor(private router: Router, private dialog:MatDialog, private api:SecretariaService ){
+  constructor(private router: Router, private dialog:MatDialog, private api:SecretariaService){
     this.nav = this.router.getCurrentNavigation();
     this.nuevoSecretaria = this.nav.extras.state;
-
     /*if (this.nuevoSecretaria != null)
     {
       var SecretariaModificado = this.nuevoSecretaria.datosSecretaria.queryParams;
@@ -63,13 +62,18 @@ export class GestionSecretariaComponent implements OnInit{
     })
   }
 
-  openDialogModificar(cedula: string, nombres: string, apellidos: string){
-    let secretariaModificar = {cedula, nombres, apellidos} as SecretariaInterface;
-    this.dialog.open(ModificarSecretariaComponent, {
-      width: '50%',
-      data: secretariaModificar
-    })
-  }
+ openDialogModificar(cedula: string, nombres: string, apellidos: string) {
+  let secretariaModificar = { cedula, nombres, apellidos } as SecretariaInterface;
+  const dialogRef = this.dialog.open(ModificarSecretariaComponent, {
+    width: '50%',
+    data: secretariaModificar
+  });
+
+  dialogRef.afterClosed().subscribe((data) => {
+    this.update();
+  });
+}
+
 
   eliminar(cedula: string) {
     //Busca posicion de la secretaria
@@ -78,15 +82,29 @@ export class GestionSecretariaComponent implements OnInit{
     this.data.splice(indice, 1);
     //Resultado
     this.dataSource = new MatTableDataSource(this.data);*/
+    console.log(cedula);
+    this.api.deleteSecretaria(cedula).subscribe((data: any)=>{
+      console.log(data);
+      this.update();
+    },);
+  }
+
+  update(){
+
+    this.api.getSecretaria().subscribe(secretaria => {
+      console.log(secretaria);
+      if(secretaria){
+        this.dataSource = new MatTableDataSource(secretaria);
+      }
+    });
+
   }
 
   ngOnInit(): void {
-    this.api.getSecretaria().subscribe(secretaria => {
-      if(secretaria){
-        this.dataSource = new MatTableDataSource(secretaria);
-        console.log(this.dataSource);
-      }
-    });
+    // const token = localStorage.getItem("token_value");
+    // const header = {"token": `bearer ${token}`};
+    // httpClient.post<example>(url, {header});
+    this.update();
   }
 }
 

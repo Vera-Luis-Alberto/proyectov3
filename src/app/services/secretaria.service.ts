@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SecretariaInterface } from '../interfaces/secretariaInterface';
 
@@ -8,11 +8,29 @@ import { SecretariaInterface } from '../interfaces/secretariaInterface';
 })
 export class SecretariaService {
   private baseUrl = 'https://localhost:7291/api';
+  private httpOptions: Object = new Object();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('currentUser') as string)?.token}`
+      })
+    };
+    console.log(this.httpOptions);
+  }
 
   getSecretaria(): Observable<SecretariaInterface[]> {
-    return this.http.get<SecretariaInterface[]>(this.baseUrl+'/Empleados/BuscarSecretarias');
+    return this.http.get<SecretariaInterface[]>(this.baseUrl+'/Empleados/BuscarSecretarias',this.httpOptions);
+  }
+
+  deleteSecretaria(ci : string): Observable<SecretariaInterface[]> {
+    return this.http.delete<SecretariaInterface[]>(this.baseUrl+'/Empleados/DeleteEmpleado?cedula=' + ci,this.httpOptions);
+  }
+
+  updateSecretaria(ci : string, nombre: string): Observable<SecretariaInterface[]> {
+    return this.http.put<SecretariaInterface[]>(this.baseUrl+'/Empleados/UpdateEmpleados?ci='+ ci + '&nombre='+ nombre,this.httpOptions);
   }
 
   /*addChoferInterface(ChoferInterface: ChoferInterface): Observable<any> {

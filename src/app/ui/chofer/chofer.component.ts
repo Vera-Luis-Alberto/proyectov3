@@ -77,11 +77,15 @@ export class ChoferComponent implements OnInit {
   }
 
   openDialogModificar(cedula: string, nombres: string, apellidos: string, disponibilidad: string){
-    let choferModificar = {cedula, nombres, apellidos, disponibilidad} as ChoferInterface;
-    this.dialog.open(ModificarChoferComponent, {
-      width: '50%',
-      data: choferModificar
-    })
+    let choferModificar = { cedula, nombres, apellidos } as ChoferInterface;
+    const dialogRef = this.dialog.open(ModificarChoferComponent, {
+    width: '50%',
+    data: choferModificar
+  });
+
+    dialogRef.afterClosed().subscribe((data) => {
+      this.update();
+    });
   }
 
   eliminar(cedula: string) {
@@ -91,14 +95,24 @@ export class ChoferComponent implements OnInit {
     //this.data.splice(indice, 1);
     //Resultado
     //this.dataSource = new MatTableDataSource(this.data);
+
+    console.log(cedula);
+    this.api.deleteChofer(cedula).subscribe((data: any)=>{
+      console.log(data);
+      this.update();
+    },);
   }
 
-  ngOnInit(): void {
+  update(){
     this.api.getChofer().subscribe(chofer => {
       if(chofer){
         this.dataSource = new MatTableDataSource(chofer);
         console.log(this.dataSource);
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.update();
   }
 }

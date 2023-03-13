@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { VehiculoInterface } from '../interfaces/vehiculoInterface';
 
@@ -8,11 +8,21 @@ import { VehiculoInterface } from '../interfaces/vehiculoInterface';
 })
 export class VehiculoService {
   private baseUrl = 'https://localhost:7291/api';
+  private httpOptions: Object = new Object();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('currentUser') as string)?.token}`
+      })
+    };
+    console.log(this.httpOptions);
+  }
 
   getVehiculo(): Observable<VehiculoInterface[]> {
-    return this.http.get<VehiculoInterface[]>(this.baseUrl+'/Vehiculos/GetVehiculos');
+    return this.http.get<VehiculoInterface[]>(this.baseUrl+'/Vehiculos/GetVehiculos', this.httpOptions);
   }
 
   /*addChoferInterface(ChoferInterface: ChoferInterface): Observable<any> {
